@@ -1,10 +1,48 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState, useRef } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = forwardRef((props, ref) => {
-    const handleSend = () => {
-        const email = "moraismovelaria@gmail.com";
-        //TODO: send email')
+    const form = useRef();
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(false);
+    const [inputs, setInputs] = useState({
+        email: "",
+        nome: "",
+        telefone: "",
+        mensagem: "",
+    });
+
+    const handleChange = (event) => {
+        event.persist();
+        setInputs((inputs) => ({
+            ...inputs,
+            [event.target.name]: event.target.value,
+        }));
+    };
+
+    const sendEmail = (event) => {
+        event.preventDefault();
+
+        console.log(inputs);
+
+        emailjs
+            .sendForm(
+                props.serviceId,
+                props.templateId,
+                form.current,
+                props.userId
+            )
+            .then(
+                (result) => {
+                    setSuccessMessage(true);
+                },
+                (error) => {
+                    setErrorMessage(true);
+                }
+            );
+
+        setInputs({ email: "", nome: "", telefone: "", mensagem: "" });
     };
 
     return (
@@ -33,27 +71,53 @@ const ContactForm = forwardRef((props, ref) => {
                     </p>
                 </div>
                 <div className="form">
-                    <form>
-                        <input type="text" name="nome" placeholder="Nome" />
-                        <input type="text" name="email" placeholder="Email" />
+                    <form ref={form}>
+                        <input
+                            type="text"
+                            name="nome"
+                            placeholder="Nome"
+                            onChange={handleChange}
+                            value={inputs.nome}
+                        />
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            onChange={handleChange}
+                            value={inputs.email}
+                        />
                         <input
                             type="text"
                             name="telefone"
                             placeholder="Telefone"
+                            onChange={handleChange}
+                            value={inputs.telefone}
                         />
                         <textarea
                             type="text"
-                            name="descricao"
+                            name="mensagem"
                             placeholder="Descreva seu projeto"
+                            onChange={handleChange}
+                            value={inputs.mensagem}
                         />
                         <button
                             type="button"
                             className="btn btn-danger btn-lg btn-orcamento"
-                            onClick={handleSend}
-                            disabled="true">
+                            onClick={sendEmail}
+                        >
                             Enviar
                         </button>
-                        <p className="alert alert-danger mt-4">Envio de email não está funcionando no momento, por favor envie diretamente para: moraismovelaria@gmail.com</p>
+                        {successMessage && (
+                            <p className="alert alert-success mt-4">
+                                Email enviado com sucesso.
+                            </p>
+                        )}
+
+                        {errorMessage && (
+                            <p className="alert alert-danger mt-4">
+                                Não foi possível enviar o email.
+                            </p>
+                        )}
                     </form>
                 </div>
             </motion.div>

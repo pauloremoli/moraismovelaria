@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 import Projects from "../components/Projects";
 import { useRef, useEffect } from "react";
 
-export default function Home() {
+const Home = ({serviceId, templateId, userId}) => {
 
     const contactFormRef = useRef();
 
@@ -29,9 +29,22 @@ export default function Home() {
                 <Features />
                 <Company />
                 <Projects />
-                <ContactForm ref={contactFormRef} />
+                <ContactForm ref={contactFormRef} serviceId={serviceId} templateId={templateId} userId={userId}/>
                 <Footer />
             </div>
         </>
     );
 }
+
+
+export async function getServerSideProps() {
+    return {
+        props: {
+            serviceId: process.env.SERVICE_ID,
+            templateId: process.env.TEMPLATE_ID,
+            userId: process.env.USER_ID,
+        },
+    };
+}
+
+export default Home;
