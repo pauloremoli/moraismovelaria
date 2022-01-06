@@ -37,6 +37,7 @@ const ContactForm = forwardRef((props, ref) => {
                 },
                 (error) => {
                     setErrorMessage(true);
+                    console.log(error);
                 }
             );
 
