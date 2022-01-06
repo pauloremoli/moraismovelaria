@@ -21,10 +21,8 @@ const ContactForm = forwardRef((props, ref) => {
         }));
     };
 
-    const sendEmail = (event) => {
+    const sendEmail = async (event) => {
         event.preventDefault();
-
-        console.log(inputs);
 
         emailjs
             .sendForm(
