@@ -1,1 +1,6 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+Website for Morais Movelaria (www.moraismovelaira.com.br)
+
+Technologies used:
+* Next JS
+* Bootstrap
+* Framer-motion
