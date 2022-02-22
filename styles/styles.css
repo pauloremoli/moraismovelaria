@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     color: hsl(0, 0%, 0%);
-    font-family: "Poppins", sans-serif;
+    font-family: 'Montserrat', sans-serif !important;
     overflow: auto;
 }
 
@@ -33,7 +33,7 @@ section {
 
 .navbar a {
     text-transform: uppercase;
-    min-width: 150px;
+    min-width: 200px;
     text-align: center;
     color: black;
     font-weight: bold;
@@ -72,7 +72,8 @@ a:hover {
 
 .btn-orcamento {
     background-color: darkred;
-    width: 250px;
+    width: 300px;
+    height: 60px;
 }
 
 h1 {
@@ -182,6 +183,10 @@ h1 {
     flex-direction: row;
     justify-content: center;
     margin: auto;
+}
+
+.text-mensagem{
+    padding: 20px;
 }
 
 .descricao {

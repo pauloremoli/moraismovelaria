@@ -95,6 +95,7 @@ const ContactForm = forwardRef((props, ref) => {
                         <textarea
                             type="text"
                             name="mensagem"
+                            className="text-mensagem"
                             placeholder="Descreva seu projeto"
                             onChange={handleChange}
                             value={inputs.mensagem}
