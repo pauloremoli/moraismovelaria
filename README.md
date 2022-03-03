@@ -1,6 +1,6 @@
 Website for Morais Movelaria (www.moraismovelaira.com.br)
 
-Technologies used:
+# Technologies
 * Next JS
 * Bootstrap
 * Framer-motion
