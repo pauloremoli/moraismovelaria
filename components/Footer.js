@@ -7,7 +7,9 @@ export default function Footer() {
                 <div className="item">
                     ENDEREÇO
                     <br />
-                    Padre Guilherme Hopp N° 128
+                    Avenida Alberto Renart N° 656
+                    <br />
+                    Jardim Santa Inês I - CEP 12248-240
                     <br />
                     São José dos Campos / SP
                 </div>
